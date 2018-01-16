@@ -16,6 +16,9 @@
         <ion-title>Gallery</ion-title>
         <!--    Toggle the gallery diplay mode  -->
         <ion-buttons right>
+            <button ion-button (click)="makeFilter()">
+                <ion-icon name="search"></ion-icon>
+            </button>
             <button ion-button (click)="changeGalleryMode()">
                 <ion-icon name="{{ mode$|async }}"></ion-icon>
             </button>

@@ -63,6 +63,10 @@ export class ApiProvider {
     return this.channels.stream$;
   }
 
+  getUsers(): Observable<any[]> {
+    return this.http.get(Api.users);
+  }
+
   getUser(): Observable<any> {
     return this.http.get(Api.user);
   }

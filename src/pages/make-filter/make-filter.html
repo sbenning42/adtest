@@ -1,0 +1,188 @@
+<!--
+  Generated template for the MakeFilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Make Filter</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Categories</ion-label>
+            <ion-input #categoryInput (ionFocus)="setFocus('categories')" (ionChange)="getMatchCategories()" [(ngModel)]="categoryName"></ion-input>
+            <button *ngIf="focus === 'categories'" item-end ion-button (click)="setFocus('')">Close</button>
+        </ion-item>
+        <ng-container *ngIf="focus === 'categories'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let category of matchCategories$|async" (click)="push(category, filters.category); setFocus('')">
+                    {{ category.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Styles</ion-label>
+            <ion-input #styleInput (ionFocus)="setFocus('styles')" (ionChange)="getMatchStyles()" [(ngModel)]="styleName"></ion-input>
+            <button *ngIf="focus === 'styles'" item-end ion-button (click)="setFocus('')">Close</button>
+        </ion-item>
+        <ng-container *ngIf="focus === 'styles'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let style of matchStyles$|async" (click)="push(style, filters.style); setFocus('')">
+                    {{ style.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Periods</ion-label>
+            <ion-input #periodsInput (ionFocus)="setFocus('periods')" (ionChange)="getMatchPeriods()" [(ngModel)]="periodName"></ion-input>
+            <button *ngIf="focus === 'periods'" item-end ion-button (click)="setFocus('')">Close</button>
+        </ion-item>
+        <ng-container *ngIf="focus === 'periods'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let period of matchPeriods$|async" (click)="push(period, filters.period); setFocus('')">
+                    {{ period.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Designers</ion-label>
+            <ion-input #designerInput (ionFocus)="setFocus('designers')" (ionChange)="getMatchDesigners()" [(ngModel)]="designerName"></ion-input>
+            <button *ngIf="focus === 'designers'" item-end ion-button (click)="setFocus('')">Close</button>
+        </ion-item>
+        <ng-container *ngIf="focus === 'designers'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let designer of matchDesigners$|async" (click)="push(designer, filters.designer); setFocus('')">
+                    {{ designer.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Brands</ion-label>
+            <ion-input #brandInput (ionFocus)="setFocus('brands')" (ionChange)="getMatchBrands()" [(ngModel)]="brandName"></ion-input>
+            <button *ngIf="focus === 'brands'" item-end ion-button (click)="setFocus('')">Close</button>
+        </ion-item>
+        <ng-container *ngIf="focus === 'brands'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let brand of matchBrands$|async" (click)="push(brand, filters.brand); setFocus('')">
+                    {{ brand.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Users</ion-label>
+            <ion-input #userInput (ionFocus)="setFocus('users')" (ionChange)="getMatchUsers()" [(ngModel)]="userName"></ion-input>
+            <button *ngIf="focus === 'users'" item-end ion-button (click)="setFocus('')">Close</button>
+        </ion-item>
+        <ng-container *ngIf="focus === 'users'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let user of matchUsers$|async" (click)="push(user, filters.user); setFocus('')">
+                    {{ user.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+    </ion-list>
+    <ion-list>
+        <ion-item *ngIf="filters.user?.length > 0">
+            <ion-badge color="primary" *ngFor="let user of filters.user" (click)="removeFilter(user, filters.user)">
+                {{ user.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.category?.length > 0">
+            <ion-badge color="primary" *ngFor="let category of filters.category" (click)="removeFilter(category, filters.category)">
+                {{ category.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.style?.length > 0">
+            <ion-badge color="secondary" *ngFor="let style of filters.style" (click)="removeFilter(style, filters.style)">
+                {{ style.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.period?.length > 0">
+            <ion-badge color="primary" *ngFor="let period of filters.period" (click)="removeFilter(period, filters.period)">
+                {{ period.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.designer?.length > 0">
+            <ion-badge color="primary" *ngFor="let designer of filters.designer" (click)="removeFilter(designer, filters.designer)">
+                {{ designer.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.brand?.length > 0">
+            <ion-badge color="secondary" *ngFor="let brand of filters.brand" (click)="removeFilter(brand, filters.brand)">
+                {{ brand.name }}
+            </ion-badge>
+        </ion-item>
+    </ion-list>
+    <ion-buttons class="flex-buttons">
+        <span class="spacer"></span>
+        <button ion-button color="danger" (click)="removeAll()">RESET</button>
+        <button ion-button (click)="cancel()">CANCEL</button>
+        <button ion-button (click)="save()">SAVE</button>
+        <span class="spacer"></span>
+    </ion-buttons>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+<!--ion-item *ngIf="filters.condition?.length > 0">
+            <ion-badge color="secondary" *ngFor="let condition of filters.condition" (click)="removeFilter(condition, filters.condition)">
+                {{ condition.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.material?.length > 0">
+            <ion-badge color="primary" *ngFor="let material of filters.material" (click)="removeFilter(material, filters.material)">
+                {{ material.name }}
+            </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="filters.color?.length > 0">
+            <ion-badge color="secondary" *ngFor="let color of filters.color" (click)="removeFilter(color, filters.color)">
+                {{ color.name }}
+            </ion-badge>
+        </ion-item-->
+<!--ion-item>
+            <ion-label>Conditions</ion-label>
+            <ion-input #conditionInput (ionFocus)="setFocus('conditions')" (ionChange)="getMatchConditions()" [(ngModel)]="conditionName"></ion-input>
+        </ion-item>
+        <ng-container *ngIf="focus === 'conditions'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let condition of matchConditions$|async" (click)="push(condition, filters.condition); setFocus('')">
+                    {{ condition.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Materials</ion-label>
+            <ion-input #materialInput (ionFocus)="setFocus('materials')" (ionChange)="getMatchMaterials()" [(ngModel)]="materialName"></ion-input>
+        </ion-item>
+        <ng-container *ngIf="focus === 'materials'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let material of matchMaterials$|async" (click)="push(material, filters.material); setFocus('')">
+                    {{ material.name }}
+                </ion-item>
+            </div>
+        </ng-container>
+        <ion-item>
+            <ion-label>Colors</ion-label>
+            <ion-input #colorInput (ionFocus)="setFocus('colors')" (ionChange)="getMatchColors()" [(ngModel)]="colorName"></ion-input>
+        </ion-item>
+        <ng-container *ngIf="focus === 'colors'">
+            <div class="not-to-much">
+                <ion-item class="autocomp" *ngFor="let color of matchColors$|async" (click)="push(color, filters.color); setFocus('')">
+                    {{ color.name }}
+                </ion-item>
+            </div>
+        </ng-container-->

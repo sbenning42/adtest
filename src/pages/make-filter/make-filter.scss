@@ -1,0 +1,19 @@
+page-make-filter {
+    ion-badge {
+        margin-right: 4px;
+    }
+    .not-to-much {
+        padding-left: 16px;
+    }
+    .flex-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .flex-buttons>* {
+        min-width: 100px;
+    }
+    .spacer {
+        flex: 1;
+    }
+}

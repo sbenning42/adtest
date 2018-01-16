@@ -14,6 +14,7 @@ export const galleryApi = `${baseApi}/shared-gallery`;
 export const annexesApi = `${baseApi}/annexes`;
 export const channelsApi = `${baseApi}/me/marketplaces/contracted`;
 export const allChannelsApi = `${baseApi}/marketplaces`;
+export const usersApi = `${baseApi}/users`;
 export const user = `${baseApi}/myusers`;
 export const userPicture = `${baseApi}/user/mypictures`;
 export const userAddresses = `${baseApi}/user/myaddresses`;
@@ -48,4 +49,5 @@ export class Api {
     public static addArticle = addArticle;
     public static putArticle = putArticle;
     public static uploadArticlePicture = uploadArticlePicture;
+    public static users = usersApi;
 }

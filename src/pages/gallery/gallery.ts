@@ -12,6 +12,8 @@ import { PageOptions } from '../../models/page-options';
 import { ContactPage } from '../contact/contact';
 import { GalleryDetailPage } from '../gallery-detail/gallery-detail';
 import { LoginPage } from '../../pages/login/login';
+import { MakeFilterPage } from '../make-filter/make-filter';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 /**
  * Generated class for the GalleryPage page.
@@ -31,6 +33,7 @@ export class GalleryPage {
 
   articles: Article[];
   pageOptions: PageOptions;
+  filters: any[] = [];
 
   mode$: Observable<string>;
 
@@ -38,6 +41,7 @@ export class GalleryPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController,
     private gallery: GalleryProvider,
     private galleryMode: GalleryModeProvider,
     private api: ApiProvider
@@ -84,7 +88,7 @@ export class GalleryPage {
    * Prepare pageOptions for fetching next page
    */
   nextPage(infiniteScroll) {
-    this.gallery.get(this.pageOptions)
+    this.gallery.get(this.pageOptions, this.filters)
       .do(response => infiniteScroll.complete())
       .subscribe(
         response => this.articles = this.articles.concat(this.getPrincipale(response.products)),
@@ -124,6 +128,17 @@ export class GalleryPage {
     this.navCtrl.push(ContactPage, {user: article['user']});
   }
 
+  makeFilter() {
+    const modal = this.modalCtrl.create(MakeFilterPage, {filters: this.filters});
+    modal.onDidDismiss((filters: any) => {
+      if (filters) {
+        this.filters = filters;
+        this.reloadProgrammaticaly();
+      }
+    });
+    modal.present();
+  }
+
   /**
    * Push the article detail page, giving it the article and all owned by the same user
    */
@@ -152,13 +167,28 @@ export class GalleryPage {
    */
   reload(infiniteScroll) {
     this.pageOptions = new PageOptions(0);
-    this.gallery.get(this.pageOptions)
+    this.gallery.get(this.pageOptions, this.filters)
       .do(response => this.pageOptions.reNew(response.count))
       .do(response => infiniteScroll.complete())
       .subscribe(
         response => this.getPrincipale(this.articles = response.products),
         error => {},
         () => this.pageOptions.nextPage()
+      );
+  }
+
+  reloadProgrammaticaly() {
+    this.pageOptions = new PageOptions(0);
+    const loader = this.presentLoading();
+    this.gallery.get(this.pageOptions, this.filters)
+      .do(response => this.pageOptions.reNew(response.count))
+      .subscribe(
+        response => this.getPrincipale(this.articles = response.products),
+        error => {this.dismissLoading(loader);},
+        () => {
+          this.dismissLoading(loader);
+          this.pageOptions.nextPage();
+        }
       );
   }
 

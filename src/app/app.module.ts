@@ -41,6 +41,8 @@ import { ArticlePreviewPage } from '../pages/article-preview/article-preview';
 import { NewTitleArticlePage } from '../pages/new-title-article/new-title-article';
 import { NewDescriptionArticlePage } from '../pages/new-description-article/new-description-article';
 import { NewPricingArticlePage } from '../pages/new-pricing-article/new-pricing-article';
+import { ChooseChannelPage } from '../pages/choose-channel/choose-channel';
+import { MakeFilterPage } from '../pages/make-filter/make-filter';
 
 import { SlidesNavigatorComponent, PicturesLoopComponent } from '../components/components.module';
 
@@ -57,7 +59,6 @@ import { ApiProvider } from '../providers/api/api';
 import { UploadProvider } from '../providers/upload/upload';
 import { CameraProvider } from '../providers/camera/camera';
 import { StoreMyArticlesProvider } from '../providers/store-my-articles/store-my-articles';
-import { ChooseChannelPage } from '../pages/choose-channel/choose-channel';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { ChooseChannelPage } from '../pages/choose-channel/choose-channel';
     NewDescriptionArticlePage,
     NewPricingArticlePage,
     ChooseChannelPage,
+    MakeFilterPage,
     SlidesNavigatorComponent, PicturesLoopComponent
   ],
   imports: [
@@ -123,6 +125,7 @@ import { ChooseChannelPage } from '../pages/choose-channel/choose-channel';
     NewDescriptionArticlePage,
     NewPricingArticlePage,
     ChooseChannelPage,
+    MakeFilterPage,
     SlidesNavigatorComponent, PicturesLoopComponent
   ],
   providers: [

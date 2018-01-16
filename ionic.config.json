@@ -1,6 +1,6 @@
 {
-  "name": "mobile.ad.test",
-  "app_id": "1f371ba0",
+  "name": "mobile.authenticdesign",
+  "app_id": "4b13ebca",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

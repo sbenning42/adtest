@@ -1,0 +1,90 @@
+page-contact {
+    ion-content {
+        max-height: 100%;
+        overflow: hidden;
+    }
+    ion-header {
+        z-index: 1000;
+    }
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .flex-column>a {
+        min-width: 160px;
+    }
+    a>button {
+        width: 100%;
+    }
+    ion-avatar img {
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 80px !important; //any size
+        max-width: 80px !important; //any size
+        max-height: 80px !important; //any size
+    }
+    .dense {
+        color: inherit !important;
+    }
+    .flex-header {
+        background-color: white;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .flex-header-item {
+        min-height: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: solid 1px #8e9093;
+        border-bottom: solid 1px #8e9093;
+    }
+    .flex-header-item>ion-icon {
+        font-size: 2em;
+    }
+    .flex-header-item>.fixit {
+        font-size: 2.5em;
+    }
+    .flex-box {
+        overflow: hidden;
+        max-height: 100%;
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+    .flex-item {
+        width: 30vw;
+        height: 30vw;
+        border: solid 1px white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .flex-item>img {}
+    .row-no-padding {
+        min-height: 64px;
+    }
+    .fixed {
+        min-width: 100%;
+        background-color: white;
+    }
+    .fixed-float {
+        min-width: 100%;
+    }
+    .head {
+        width: calc(100% - 32px);
+        background-color: white;
+        border-bottom: solid 1px #8e9093;
+        margin: 16px;
+        margin-top: 0;
+    }
+}

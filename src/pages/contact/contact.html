@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{ contact.name }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <!--    Contact infos   -->
+    <div ion-fixed #fixed class="head">
+        <ion-item no-lines class="row-no-padding">
+            <ion-avatar item-start>
+                <img src="{{ contact.picture ? ( basePicturesApi + contact.picture.public_path ) : 'assets/imgs/addef.png' }}">
+            </ion-avatar>
+            <div class="flex-column" item-end>
+                <a href="tel:{{ contact.phone }}"><button ion-button outline>Phone-call</button></a>
+                <a href="mailto:{{ contact.email }}?Subject={{ 'Authentic Design' }}"><button ion-button outline>Message</button></a>
+            </div>
+        </ion-item>
+    </div>
+    <div class="fixed" [ngStyle]="{ 'margin-top.px': height }">
+        <!--    Contact additionnal infos   -->
+        <ion-item no-lines class="row-no-padding">
+            <p class="dense" style="white-space: pre-line;"><strong>{{ contact.name }}</strong></p>
+            <p class="dense" style="white-space: pre-line;">{{ infos }}</p>
+        </ion-item>
+        <!--    Contact articles gallery header   -->
+        <div class="flex-header">
+            <div class="flex-header-item">
+                <strong>{{ count }}</strong>
+                <span>posts</span>
+            </div>
+            <div class="flex-header-item">
+                <ion-icon name="apps" (click)="modeTrue()"></ion-icon>
+            </div>
+            <div class="flex-header-item">
+                <ion-icon class="fixit" name="list" color="light" (click)="modeFalse()"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <!--    Contact articles gallery   -->
+    <div class="flex-column fixed-float">
+        <div class="flex-box" *ngIf="mode">
+            <div class="flex-item" *ngFor="let article of articles">
+                <img src="{{ article.principale }}">
+            </div>
+        </div>
+        <div *ngIf="!mode">
+            <img src="assets/imgs/cs.png">
+        </div>
+        <ion-infinite-scroll *ngIf="mode && pageOption.miss > 0" (ionInfinite)="nextPage($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+
+</ion-content>

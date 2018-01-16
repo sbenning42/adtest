@@ -1,0 +1,16 @@
+page-slider {
+    background-color: black;
+    z-index: 0;
+    .back {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        z-index: 1;
+    }
+    .toolbar-background {
+        background: #000000 !important;
+    }
+    .swiper-pagination-progress .swiper-pagination-progressbar {
+        background: #f4f4f4;
+    }
+}

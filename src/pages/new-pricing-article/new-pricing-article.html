@@ -1,0 +1,44 @@
+<!--
+  Generated template for the NewPricingArticlePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>New Article Price</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+        <ion-label>Quantity <span [ngStyle]="{'color': quantity ? '#00aed8' : '#f44336'}">*</span></ion-label>
+        <ion-input type="number" [(ngModel)]="quantity"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Price <span [ngStyle]="{'color': price ? '#00aed8' : '#f44336'}">*</span></ion-label>
+        <ion-input type="number" [(ngModel)]="price"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label>Price by<span [ngStyle]="{'color': price_by ? '#00aed8' : '#f44336'}">*</span></ion-label>
+    </ion-item>
+
+    <div class="action">
+        <span class="spacer"></span>
+        <button [class.select]="price_by === 'unit'" ion-button outline (click)="price_by = 'unit'">Unit</button>
+        <span class="spacer"></span>
+        <button [class.select]="price_by === 'set'" ion-button outline (click)="price_by = 'set'">Set</button>
+        <span class="spacer"></span>
+    </div>
+
+    <div class="actions">
+        <button class="marged accent" ion-button (click)="cancel()">Cancel</button>
+        <button class="marged" ion-button (click)="save()" [disabled]="!price || !quantity || !price_by">Save Pricing</button>
+    </div>
+
+</ion-content>

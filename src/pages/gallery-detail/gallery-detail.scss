@@ -1,0 +1,84 @@
+page-gallery-detail {
+    ion-slides {
+        height: 70%;
+    }
+    .card-md {
+        margin: 0;
+        width: 100%;
+    }
+    .flex-box {
+        margin-top: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .flex-box>* {
+        margin: 2px;
+        margin-left: 0;
+        margin-right: 4px;
+    }
+    .right {
+        float: right;
+    }
+    .left {
+        float: left;
+    }
+    .fix-right-marge {}
+    .flex-box-text {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .flex-box-text>a {
+        margin-left: auto;
+        margin-bottom: 5px;
+    }
+    .padding {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    .gallery-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .gallery-item {
+        width: calc(33vw - 4px);
+        height: calc(33vw - 4px);
+        border: solid 1px white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gallery-item>img {
+        object-fit: cover;
+    }
+    .gallery-item-more {
+        background-image: url(/assets/imgs/more.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+    .dense {
+        margin-top: 0 !important;
+    }
+    .bigger {
+        font-size: 1.6rem;
+        margin-bottom: 8px !important;
+        margin-top: 0 !important;
+    }
+    .no-padding {
+        padding-left: 8px;
+    }
+    ion-avatar img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 80px !important; //any size
+        max-height: 80px !important; //any size
+    }
+    .scroll-content {
+        padding-top: 0 !important;
+    }
+}

@@ -1,0 +1,153 @@
+<!--
+  Generated template for the ArticlePreviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Article Preview</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>Article Resume</ion-list-header>
+
+        <ion-item-divider (click)="goto(0)"> Pictures - {{ (pictures$|async)?.length + pictures?.length }}</ion-item-divider>
+        <ng-container *ngFor="let picture of pictures$|async; let index = index">
+            <ion-item *ngIf="index === 0" (click)="goto(0)">
+                <ion-label>Cover</ion-label>
+                <ion-icon item-start name="{{ picture ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': picture ? '#00aed8' : '#f44336' }"></ion-icon>
+                <ion-thumbnail item-end><img src="{{ picture }}"></ion-thumbnail>
+            </ion-item>
+        </ng-container>
+        <div class="gallery-wrapper">
+            <div class="gallery-box">
+                <div class="gallery-item" *ngFor="let picture of pictures$|async; let index = index" [ngStyle]="{ 'background-image': 'url(' + picture + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': '50% 50%' }">
+                </div>
+                <div class="gallery-item" *ngFor="let picture of pictures; let index = index" [ngStyle]="{ 'background-image': 'url(' + picture + ')', 'background-size': 'cover', 'background-repeat': 'no-repeat', 'background-position': '50% 50%' }">
+                </div>
+            </div>
+        </div>
+        <ion-item-divider></ion-item-divider>
+
+        <ion-item (click)="article.name ? undefined : goto(0)">
+            <ion-icon item-start name="{{ article.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Title</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.description ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.description ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.description ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Desc.</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.description }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.size_height ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.size_height ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.size_height ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Height</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.size_height }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.size_width ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.size_width ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.size_width ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Width</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.size_width }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.size_depth ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.size_depth ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.size_depth ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Depth</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.size_depth }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.weight ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.weight ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.weight ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Weight</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.weight }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.quantity ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.quantity ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.quantity ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Quantity</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.quantity }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.price ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.price ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.price ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Price</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.price }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.price_by ? undefined : goto(1)">
+            <ion-icon item-start name="{{ article.price_by ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.price_by ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Price by</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.price_by }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.address ? undefined : goto(2)">
+            <ion-icon item-start name="{{ selected.address.type ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.address.type ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Address Location</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.address?.type }} </p>
+        </ion-item>
+
+        <ion-item (click)="article.number_of_packs ? undefined : goto(2)">
+            <ion-icon item-start name="{{ article.number_of_packs ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': article.number_of_packs ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Nb of Packs</ion-label>
+            <p style="white-space: pre-line" item-end> {{ article.number_of_packs }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.category.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.category.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.category.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Category</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.category?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.style.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.style.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.style.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Style</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.style?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.periods.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.periods.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.periods.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Period</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.periods?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.condition.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.condition.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.condition.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Condition</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.condition?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.material.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.material.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.material.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Material</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.material?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.color.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.color.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.color.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Color</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.color?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.designer.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.designer.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.designer.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Designer</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.designer?.name }} </p>
+        </ion-item>
+
+        <ion-item (click)="selected.brand.name ? undefined : goto(3)">
+            <ion-icon item-start name="{{ selected.brand.name ? 'checkmark' : 'alert' }}" [ngStyle]="{ 'color': selected.brand.name ? '#00aed8' : '#f44336' }"></ion-icon>
+            <ion-label item-start>Brand</ion-label>
+            <p style="white-space: pre-line" item-end> {{ selected.brand?.name }} </p>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

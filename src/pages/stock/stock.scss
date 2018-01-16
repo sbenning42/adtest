@@ -1,0 +1,54 @@
+page-stock {
+    .flex-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .flex-box>* {
+        width: calc(33vw - 4px);
+        border: solid 1px white;
+    }
+    .flex-item>img {
+        width: 100%;
+    }
+    .grey {
+        color: grey;
+    }
+    .primary {
+        background-color: #00aed8;
+        color: whitesmoke;
+    }
+    .accent {
+        background-color: #f44336;
+        color: whitesmoke;
+    }
+    .manager {
+        width: 100%;
+        display: flex;
+    }
+    .spacer {
+        flex: 1;
+    }
+    .test-row {
+        width: 100%;
+        display: flex;
+        position: relative;
+        min-height: 72px;
+    }
+    .test-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.failure-toast {
+    >div {
+        background-color: #f44336!important;
+    }
+}

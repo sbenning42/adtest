@@ -1,0 +1,14 @@
+<!--    Tabs content for authenticated users    -->
+<ion-tabs *ngIf="(logged$|async)" selectedIndex="{{ selectedIndex }}">
+    <ion-tab [root]="homeRoot" tabTitle="Home" tabIcon="cloud"></ion-tab>
+    <ion-tab [root]="galleryRoot" tabTitle="Gallery" tabIcon="images"></ion-tab>
+    <ion-tab [root]="addRoot" tabTitle="Add" tabIcon="add"></ion-tab>
+    <ion-tab [root]="stockRoot" tabTitle="Stock" tabIcon="home"></ion-tab>
+    <ion-tab [root]="accountRoot" tabTitle="Account" tabIcon="contacts"></ion-tab>
+</ion-tabs>
+
+<!--    Tabs content for unauthenticated users    -->
+<ion-tabs *ngIf="!(logged$|async)">
+    <ion-tab [root]="homeRoot" tabTitle="Home" tabIcon="help"></ion-tab>
+    <ion-tab [root]="loginRoot" tabTitle="Login" tabIcon="key"></ion-tab>
+</ion-tabs>

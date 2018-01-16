@@ -1,0 +1,53 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>stock-detail</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-item class="no-padding" no-lines>
+        <ion-avatar item-start>
+            <img src="{{ article.principale }}">
+        </ion-avatar>
+        <div class="flex-box-text">
+            <h2 style="white-space: pre-line;">{{ article.name }}<span class="grey"> - Ref: {{ article.id }}</span></h2>
+        </div>
+    </ion-item>
+
+    <div class="padding">
+        <ion-item-divider color="light">Marketplaces</ion-item-divider>
+        <ion-row *ngFor="let channel of mkChannels">
+            <ion-col class="pad">
+                <p style="white-space: pre-line;">{{ channel.name }}</p>
+            </ion-col>
+            <ion-col class="flexitude-center">
+                <p class="dense grey" style="white-space: pre-line;">{{ getStatus(channel.name)?.name }}</p>
+            </ion-col>
+            <ion-col class="flexitude" (click)="register(channel)">
+                <ion-toggle disabled="{{ getStatus(channel.name)?.disabled || false }}" checked="{{ getStatus(channel.name)?.checked || false }}"></ion-toggle>
+            </ion-col>
+        </ion-row>
+        <ion-item-divider class="second" color="light">Authentic Design</ion-item-divider>
+        <ion-row *ngFor="let channel of feChannels">
+            <ion-col class="pad">
+                <p style="white-space: pre-line;">{{ channel.name }}</p>
+            </ion-col>
+            <ion-col class="flexitude-center">
+                <p class="dense grey" style="white-space: pre-line;">{{ getStatus(channel.name)?.name }}</p>
+            </ion-col>
+            <ion-col class="flexitude" (click)="register(channel)">
+                <ion-toggle disabled="{{ getStatus(channel.name)?.disabled || false }}" checked="{{ getStatus(channel.name)?.checked || false }}"></ion-toggle>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <div class="validate-box">
+        <button class="validate" ion-button raised (click)="sold()" [disabled]="alreadySold || article.state_id < 2">Sold</button>
+        <button class="validate accent" ion-button raised (click)="modify()" [disabled]="alreadySold">Modify</button>
+        <button class="validate warn" ion-button raised (click)="delete()" [disabled]="alreadySold || article.state_id > 2">Delete</button>
+    </div>
+
+</ion-content>

@@ -1,0 +1,34 @@
+<!--
+  Generated template for the StockFilterCreationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content padding>
+    <!-- List Mode -->
+    <ion-list *ngIf="(mode$|async) === 'apps'">
+        <ion-item *ngFor="let article of articles; let i = index" (click)="details(article)">
+            <ion-thumbnail item-start>
+                <img src="{{ article.principale }}">
+            </ion-thumbnail>
+            <h2 style="white-space: pre-line;">{{ article.name }}</h2>
+            <p>Ref: {{ article.id }}</p>
+            <ion-icon name="construct" item-end (click)="details(article)"></ion-icon>
+            <!--button ion-button clear item-end (click)="details(article, i)">View</button-->
+        </ion-item>
+    </ion-list>
+
+    <!-- Thumbnail Mode -->
+    <div *ngIf="(mode$|async) === 'list'" class="flex-box">
+        <div *ngFor="let article of articles; let i = index">
+            <img src="{{ article.principale }}" (click)="details(article)">
+        </div>
+    </div>
+
+    <ion-infinite-scroll *ngIf="pageOptions.miss > 0" (ionInfinite)="nextPage($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

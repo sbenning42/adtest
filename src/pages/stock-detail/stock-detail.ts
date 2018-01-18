@@ -10,6 +10,7 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 import { AddPage } from '../add/add';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { ChooseChannelPage } from '../choose-channel/choose-channel';
+import { GalleryDetailPage } from '../gallery-detail/gallery-detail';
 
 /**
  * Generated class for the StockDetailPage page.
@@ -196,6 +197,10 @@ export class StockDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StockDetailPage');
+  }
+
+  details2() {
+    this.navCtrl.push(GalleryDetailPage, { article: this.article })
   }
 
 }

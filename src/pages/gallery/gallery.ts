@@ -49,6 +49,10 @@ export class GalleryPage {
     this.mode$ = this.galleryMode.get();
   }
 
+  ionSelected() {
+    console.log("HEP")
+  }
+
   ionViewDidLoad() {
     this.articles = [];
     this.fetchData();
@@ -126,6 +130,11 @@ export class GalleryPage {
    */
   contact(article: Article) {
     this.navCtrl.push(ContactPage, {user: article['user']});
+  }
+
+  resetFilters() {
+    this.filters = [];
+    this.reloadProgrammaticaly();
   }
 
   makeFilter() {

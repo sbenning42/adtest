@@ -33,6 +33,10 @@
                 <div class="gallery-item gallery-item-more" (click)="takeOne()">
                 </div>
             </div>
+            <h3>Debug</h3>
+            <div *ngFor="let picture of pictures$|async; let index = index">
+                <h4>{{ picture }}</h4>
+            </div>
         </div>
 
         <ion-list-header>

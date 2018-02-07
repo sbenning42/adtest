@@ -97,8 +97,7 @@ import { StoreMyArticlesProvider } from '../providers/store-my-articles/store-my
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule,
-    ImagePicker
+    HttpClientModule
     
   ],
   bootstrap: [IonicApp],
@@ -150,6 +149,7 @@ import { StoreMyArticlesProvider } from '../providers/store-my-articles/store-my
     ApiProvider,
     UploadProvider,
     CameraProvider,
+    ImagePicker,
     StoreMyArticlesProvider
   ]
 })

@@ -102,6 +102,45 @@ export class CameraProvider {
     return this.pictures && this.pictures.length > 0;
   }
 
+    private loptions: CameraOptions = {
+    quality: 100,
+    targetWidth: 1200,
+    targetHeight: 1200,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    saveToPhotoAlbum: false,
+    allowEdit: true,
+    sourceType: 0
+  }
+
+    private specialLoptions: CameraOptions = {
+    quality: 100,
+    targetWidth: 1200,
+    targetHeight: 1200,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    saveToPhotoAlbum: false,
+    allowEdit: true,
+    sourceType: 0
+  }
+  takeOneSpecialL() {
+    this.camera.getPicture(this.specialLoptions).then(
+      imageData => {
+        getDataUri(imageData, function(dataUri) {
+          this.publishPictures(dataUri);
+        });
+      },
+      error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+  }
+
+    takeOneL() {
+    this.camera.getPicture(this.loptions).then(
+      imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
+      error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+  }
+
 }
 
 function getDataUri(url, callback) {

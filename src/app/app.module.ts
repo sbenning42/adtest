@@ -43,6 +43,7 @@ import { NewDescriptionArticlePage } from '../pages/new-description-article/new-
 import { NewPricingArticlePage } from '../pages/new-pricing-article/new-pricing-article';
 import { ChooseChannelPage } from '../pages/choose-channel/choose-channel';
 import { MakeFilterPage } from '../pages/make-filter/make-filter';
+import { CameraTypePage } from '../pages/camera-type/camera-type';
 
 import { SlidesNavigatorComponent, PicturesLoopComponent } from '../components/components.module';
 
@@ -89,6 +90,7 @@ import { StoreMyArticlesProvider } from '../providers/store-my-articles/store-my
     NewPricingArticlePage,
     ChooseChannelPage,
     MakeFilterPage,
+    CameraTypePage,
     SlidesNavigatorComponent, PicturesLoopComponent
   ],
   imports: [
@@ -126,6 +128,7 @@ import { StoreMyArticlesProvider } from '../providers/store-my-articles/store-my
     NewPricingArticlePage,
     ChooseChannelPage,
     MakeFilterPage,
+    CameraTypePage,
     SlidesNavigatorComponent, PicturesLoopComponent
   ],
   providers: [

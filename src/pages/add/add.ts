@@ -19,6 +19,7 @@ import { NewTitleArticlePage } from '../new-title-article/new-title-article';
 import { NewDescriptionArticlePage } from '../new-description-article/new-description-article';
 import { NewPricingArticlePage } from '../new-pricing-article/new-pricing-article';
 import { basePicturesApi } from '../../api/api';
+import { CameraTypePage } from '../camera-type/camera-type';
 
 /**
  * Generated class for the AddPage page.
@@ -208,7 +209,8 @@ export class AddPage {
   }
 
   takeOne() {
-    this.camera.takeOne();
+    this.modder(CameraTypePage, { delegate: this }, (args) => args ? this.camera.takeOne() : this.camera.takeOneL);
+    // this.camera.takeOne();
   }
 
   takeLoop() {

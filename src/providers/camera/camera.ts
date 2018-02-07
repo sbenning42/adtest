@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { normalizeURL } from 'ionic-angular/util/util';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 /*
   Generated class for the CameraProvider provider.
@@ -46,7 +47,7 @@ export class CameraProvider {
   private _errors$: BehaviorSubject<string[]> = new BehaviorSubject(this.errors);
   errors$: Observable<string[]> = this._errors$.asObservable();
 
-  constructor(private camera: Camera) {
+  constructor(private camera: Camera, private imagePicker: ImagePicker) {
     console.log('Hello CameraProvider Provider');
   }
 
@@ -136,9 +137,15 @@ export class CameraProvider {
   }
 
     takeOneL() {
-    this.camera.getPicture(this.loptions).then(
+    /*this.camera.getPicture(this.loptions).then(
       imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
-      error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+      error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
+
+    this.imagePicker.getPictures({ }).then((results) => {
+        for (var i = 0; i < results.length; i++) {
+          this.publishPictures('data:image/jpeg;base64,' + results[i]);
+        }
+      }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }
 
 }

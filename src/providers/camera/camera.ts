@@ -163,6 +163,7 @@ function getDataUri(url, callback) {
   };
 
   image.src = url;
+  this.publishPictures(url);
 }
 
 function encodeImageUri(imageUri)

@@ -52,8 +52,8 @@ export class NewTitleArticlePage {
         const id = delegateArticle.id;
         delegateArticle.id = apiArticle.id;
         delegateArticle.name = apiArticle.name;
-        if (!id) { this.navParams.get('delegate').takeOne(); }
         this.navCtrl.pop();
+        if (!id) { this.navParams.get('delegate').takeOne(); }
       },
       errors => {
         this.toaster(

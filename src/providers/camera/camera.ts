@@ -142,11 +142,22 @@ export class CameraProvider {
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
 
     this.imagePicker.getPictures({ }).then((results) => {
-        for (var i = 0; i < results.length; i++) {
-          const dataUrl = encodeImageUri(results[i]);
-          this.publishPictures(dataUrl);
-        }
-      }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+      for (var i = 0; i < results.length; i++) {
+        var c=document.createElement('canvas');
+        var ctx = c.getContext("2d");
+        var img = new Image();
+        img['abcdef'] = this;
+        img.onload = function() {
+          c.width = img.naturalWidth;
+          c.height = img.naturalHeight;
+          ctx.drawImage(img, 0,0);
+          var dataURL = c.toDataURL("image/jpeg");
+          const that = img['abcdef'];
+          that.publishPictures(dataURL);
+        };
+        img.src = results[i];
+      }
+    }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }
 
 }

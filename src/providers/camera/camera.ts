@@ -141,7 +141,7 @@ export class CameraProvider {
       imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
 
-    this.imagePicker.getPictures({ }).then((results) => {
+    this.imagePicker.getPictures({ outputType: 1 }).then((results) => {
         for (var i = 0; i < results.length; i++) {
           this.publishPictures('data:image/jpeg;base64,' + results[i]);
         }

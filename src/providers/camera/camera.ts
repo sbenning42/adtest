@@ -74,7 +74,7 @@ export class CameraProvider {
   takeOneSpecial() {
     this.camera.getPicture(this.specialOptions).then(
       imageData => {
-        getDataUri(imageData, function(dataUri) {
+        this.getDataUri(imageData, function(dataUri) {
           this.publishPictures(dataUri);
         });
       },
@@ -129,7 +129,7 @@ export class CameraProvider {
   takeOneSpecialL() {
     this.camera.getPicture(this.specialLoptions).then(
       imageData => {
-        getDataUri(imageData, function(dataUri) {
+        this.getDataUri(imageData, function(dataUri) {
           this.publishPictures(dataUri);
         });
       },
@@ -142,29 +142,31 @@ export class CameraProvider {
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
     this.imagePicker.getPictures({ }).then((results) => {
       for (var i = 0; i < results.length; i++) {
-        getDataUri(results[i], function(dataUri) {
+        this.getDataUri(results[i], function(dataUri) {
           this.publishPictures(dataUri);
         });
       }
     }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }
+  
+  getDataUri(url, callback) {
+    var image = new Image();
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = image.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = image.naturalHeight; // or 'height' if you want a special/scaled size
+        canvas.getContext('2d').drawImage(<HTMLImageElement>image, 0, 0);
+        callback(canvas.toDataURL('image/jpeg'));
+    };
+
+    image.src = url;
+    this.publishPictures('got: ' + url);
+  }
 
 }
 
-function getDataUri(url, callback) {
-  var image = new Image();
 
-  image.onload = function () {
-      var canvas = document.createElement('canvas');
-      canvas.width = image.naturalWidth; // or 'width' if you want a special/scaled size
-      canvas.height = image.naturalHeight; // or 'height' if you want a special/scaled size
-      canvas.getContext('2d').drawImage(<HTMLImageElement>image, 0, 0);
-      callback(canvas.toDataURL('image/jpeg'));
-  };
-
-  image.src = url;
-  this.publishPictures(url);
-}
 
 function encodeImageUri(imageUri)
 {

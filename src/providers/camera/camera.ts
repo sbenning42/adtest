@@ -146,13 +146,12 @@ export class CameraProvider {
         var c=document.createElement('canvas');
         var ctx = c.getContext("2d");
         var img = new Image();
-        img['abcdef'] = this;
+        const that = this;
         img.onload = function() {
           c.width = img.naturalWidth;
           c.height = img.naturalHeight;
           ctx.drawImage(img, 0,0);
           var dataURL = c.toDataURL("image/jpeg");
-          const that = img['abcdef'];
           that.publishPictures(dataURL);
         };
         img.src = results[i];

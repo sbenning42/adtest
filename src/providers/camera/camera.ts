@@ -136,17 +136,16 @@ export class CameraProvider {
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }
 
-    takeOneL() {
+  takeOneL() {
     /*this.camera.getPicture(this.loptions).then(
       imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
-
+    const that = this;
     this.imagePicker.getPictures({ }).then((results) => {
       for (var i = 0; i < results.length; i++) {
         var c=document.createElement('canvas');
         var ctx = c.getContext("2d");
         var img = new Image();
-        const that = this;
         img.onload = function() {
           c.width = img.naturalWidth;
           c.height = img.naturalHeight;

@@ -209,7 +209,7 @@ export class AddPage {
   }
 
   takeOne() {
-    this.modder(CameraTypePage, { delegate: this }, (args) => args ? this.camera.takeOne() : this.camera.takeOneL);
+    this.modder(CameraTypePage, { delegate: this }, (args) => args ? this.camera.takeOne() : this.camera.takeOneL());
     // this.camera.takeOne();
   }
 

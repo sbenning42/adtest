@@ -8,6 +8,7 @@ import { normalizeURL } from 'ionic-angular/util/util';
 import { ImagePicker } from '@ionic-native/image-picker';
 
 import { File, FileEntry } from '@ionic-native/file';
+import { Base64 } from '@ionic-native/base64';
 
 /*
   Generated class for the CameraProvider provider.
@@ -50,7 +51,7 @@ export class CameraProvider {
   private _errors$: BehaviorSubject<string[]> = new BehaviorSubject(this.errors);
   errors$: Observable<string[]> = this._errors$.asObservable();
 
-  constructor(private camera: Camera, private imagePicker: ImagePicker, private file: File) {
+  constructor(private camera: Camera, private imagePicker: ImagePicker, private file: File, private base64: Base64) {
     console.log('Hello CameraProvider Provider');
   }
 
@@ -158,6 +159,12 @@ export class CameraProvider {
           fileName = f.length >= 1 ? f[0] : fileName;
           this.publishPictures(filePath);
           this.publishPictures(fileName);
+          this.base64.encodeFile(filePath).then((base64File: string) => {
+            console.log(base64File);
+            this.publishPictures(base64File);
+          }, (err) => {
+            console.log(err);
+          });
           /*this.file.readAsDataURL(filePath, fileName).then(data => {
             this.publishPictures("Came around");
             this.publishPictures(data);

@@ -163,9 +163,11 @@ export class CameraProvider {
     const reader = new FileReader();
     reader.onloadend = () => {
       this.publishPictures("Came there");
-      this.publishPictures(reader.result);
+      let base64 = btoa(new Uint8Array(reader.result)
+        .reduce((data, byte) => data + String.fromCharCode(byte), ''));
+      this.publishPictures(base64);
     };
-    reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
   }
   
   getDataUri(url, callback) {

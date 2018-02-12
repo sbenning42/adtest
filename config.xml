@@ -107,4 +107,5 @@
     <plugin name="com.synconset.imagepicker" spec="~2.1.8">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="We are using the library to let make your pictures in advance" />
     </plugin>
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
 </widget>

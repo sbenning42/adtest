@@ -141,10 +141,15 @@ export class CameraProvider {
       imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
     this.imagePicker.getPictures({ }).then((results) => {
-      for (var i = 0; i < results.length; i++) {
+      /*for (var i = 0; i < results.length; i++) {
         this.getDataUri(results[i], function(dataUri) {
           this.publishPictures(dataUri);
         });
+      }*/
+      for (var i = 0; i < results.length; i++) {
+        console.log('Image URI: ' + results[i]);
+        this.publishPictures(results[i]);
+        getFileContentAsBase64(results[i], content => this.publishPictures(content));
       }
     }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }
@@ -181,4 +186,25 @@ function encodeImageUri(imageUri)
      img.src = imageUri;
      var dataURL = c.toDataURL("image/jpeg");
      return dataURL;
+}
+
+
+function getFileContentAsBase64(path,callback){
+    (<any>window).resolveLocalFileSystemURL(path, gotFile, fail);
+            
+    function fail(e) {
+          alert('Cannot found requested file');
+    }
+
+    function gotFile(fileEntry) {
+           fileEntry.file(function(file) {
+              var reader = new FileReader();
+              reader.onloadend = function(e) {
+                   var content = this.result;
+                   callback(content);
+              };
+              // The most important point, use the readAsDatURL Method from the file plugin
+              reader.readAsDataURL(file);
+           });
+    }
 }

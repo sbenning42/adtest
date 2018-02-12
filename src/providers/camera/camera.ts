@@ -148,10 +148,12 @@ export class CameraProvider {
           this.publishPictures(dataUri);
         });
       }*/
-      for (var i = 0; i < results.length; i++) {
+      for (let i = 0; i < results.length; i++) {
         this.file.resolveLocalFilesystemUrl(results[i])
-          .then(entry => (<FileEntry>entry).file(file => this.readFile(file)))
-          .catch(err => console.log(err));
+          .then(entry => {
+            this.publishPictures("Came around");
+            (<FileEntry>entry).file(file => this.readFile(file));
+          }).catch(err => console.log(err));
       }
     }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }

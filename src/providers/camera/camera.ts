@@ -143,22 +143,21 @@ export class CameraProvider {
     /*this.camera.getPicture(this.loptions).then(
       imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
-    p.ready().then(() => {
+
       this.imagePicker.getPictures({ }).then((results) => {
       /*for (var i = 0; i < results.length; i++) {
         this.getDataUri(results[i], function(dataUri) {
           this.publishPictures(dataUri);
         });
       }*/
-      for (let i = 0; i < results.length; i++) {
-        this.file.resolveLocalFilesystemUrl(results[i])
-          .then(entry => {
-            this.publishPictures("Came around");
-            (<FileEntry>entry).file(file => this.readFile(file));
-          }).catch(err => console.log(err));
-      }
-    }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
-    });
+        for (let i = 0; i < results.length; i++) {
+          this.file.resolveLocalFilesystemUrl(results[i])
+            .then(entry => {
+              this.publishPictures("Came around");
+              (<FileEntry>entry).file(file => this.readFile(file));
+            }).catch(err => console.log(err));
+        }
+      }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
     
   }
 

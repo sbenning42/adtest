@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
 import { ImagePicker } from '@ionic-native/image-picker'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -137,6 +138,7 @@ import { StoreMyArticlesProvider } from '../providers/store-my-articles/store-my
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
+    File,
     StockProvider,
     GalleryProvider,
     AuthProvider,

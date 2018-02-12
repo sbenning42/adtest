@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Article } from '../../models/article';
 import { ApiProvider } from '../../providers/api/api';
@@ -120,7 +120,8 @@ export class AddPage {
     public toastCtrl: ToastController,
     public loading: LoadingController,
     public api: ApiProvider,
-    public annexes: AnnexesProvider
+    public annexes: AnnexesProvider,
+    public platform: Platform
   ) { }
 
   ionViewWillEnter() {
@@ -210,7 +211,7 @@ export class AddPage {
   }
 
   takeOne() {
-    this.modder(CameraTypePage, { delegate: this }, (args) => args ? this.camera.takeOne() : this.camera.takeOneL());
+    this.modder(CameraTypePage, { delegate: this }, (args) => args ? this.camera.takeOne() : this.camera.takeOneL(this.platform));
     // this.camera.takeOne();
   }
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { Platform } from 'ionic-angular';
 import { normalizeURL } from 'ionic-angular/util/util';
 import { ImagePicker } from '@ionic-native/image-picker';
 
@@ -138,11 +139,12 @@ export class CameraProvider {
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
   }
 
-    takeOneL() {
+    takeOneL(p: Platform) {
     /*this.camera.getPicture(this.loptions).then(
       imageData => this.publishPictures('data:image/jpeg;base64,' + imageData),
       error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));*/
-    this.imagePicker.getPictures({ }).then((results) => {
+    p.ready().then(() => {
+      this.imagePicker.getPictures({ }).then((results) => {
       /*for (var i = 0; i < results.length; i++) {
         this.getDataUri(results[i], function(dataUri) {
           this.publishPictures(dataUri);
@@ -156,6 +158,8 @@ export class CameraProvider {
           }).catch(err => console.log(err));
       }
     }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+    });
+    
   }
 
   readFile(file: any) {

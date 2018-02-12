@@ -165,7 +165,7 @@ export class CameraProvider {
       this.publishPictures("Came there");
       this.publishPictures(reader.result);
     };
-    reader.readAsArrayBuffer(file);
+    reader.readAsDataURL(file);
   }
   
   getDataUri(url, callback) {

@@ -169,6 +169,7 @@ export class CameraProvider {
       /*let base64 = btoa(new Uint8Array(reader.result)
         .reduce((data, byte) => data + String.fromCharCode(byte), ''));*/
       this.publishPictures(reader.result);
+      this.publishPictures(_arrayBufferToBase64(reader.result));
     };
     reader.readAsArrayBuffer(file);
   }
@@ -190,7 +191,15 @@ export class CameraProvider {
 
 }
 
-
+function _arrayBufferToBase64( buffer ) {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
+}
 
 function encodeImageUri(imageUri)
 {

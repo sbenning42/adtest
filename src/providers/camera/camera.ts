@@ -156,10 +156,12 @@ export class CameraProvider {
           const filePath = path.replace(fileName, '');
           const f = fileName.split('?');
           fileName = f.length >= 1 ? f[0] : fileName;
-          this.file.readAsDataURL(filePath, fileName).then(data => {
+          this.publishPictures(filePath);
+          this.publishPictures(fileName);
+          /*this.file.readAsDataURL(filePath, fileName).then(data => {
             this.publishPictures("Came around");
             this.publishPictures(data);
-          }, err => this.publishPictures(err));
+          }, err => this.publishPictures(err));*/
         }
          /* this.file.resolveLocalFilesystemUrl(path)
             .then(entry => {

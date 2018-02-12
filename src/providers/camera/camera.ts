@@ -149,8 +149,6 @@ export class CameraProvider {
         });
       }*/
       for (var i = 0; i < results.length; i++) {
-        console.log('Image URI: ' + results[i]);
-        this.publishPictures(results[i]);
         this.file.resolveLocalFilesystemUrl(results[i])
           .then(entry => (<FileEntry>entry).file(file => this.readFile(file)))
           .catch(err => console.log(err));
@@ -159,9 +157,11 @@ export class CameraProvider {
   }
 
   readFile(file: any) {
+    this.publishPictures("Came here");
     const reader = new FileReader();
     const callback = (content) => this.publishPictures(content);
     reader.onloadend = function () {
+      callback("Came there");
       callback(this.result);
     };
     reader.readAsDataURL(file);

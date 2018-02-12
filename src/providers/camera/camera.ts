@@ -161,12 +161,11 @@ export class CameraProvider {
   readFile(file: any) {
     this.publishPictures("Came here");
     const reader = new FileReader();
-    const callback = (content) => this.publishPictures(content);
-    reader.onloadend = function () {
-      callback("Came there");
-      callback(this.result);
+    reader.onloadend = () => {
+      this.publishPictures("Came there");
+      this.publishPictures(reader.result);
     };
-    reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
   }
   
   getDataUri(url, callback) {

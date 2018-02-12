@@ -154,10 +154,12 @@ export class CameraProvider {
           const path = results[i];
           const fileName = path.split('/').pop();
           const filePath = path.replace(fileName, '');
-          this.file.readAsDataURL(filePath, fileName).then(data => {
+          p.ready().then(() => {
+            this.file.readAsDataURL(filePath, fileName).then(data => {
               this.publishPictures("Came around");
               this.publishPictures(data);
-          }, err => this.publishPictures(err));
+            }, err => this.publishPictures(err));
+          });
         }
          /* this.file.resolveLocalFilesystemUrl(path)
             .then(entry => {

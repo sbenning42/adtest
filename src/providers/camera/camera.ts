@@ -157,7 +157,7 @@ export class CameraProvider {
           this.file.readAsDataURL(filePath, fileName).then(data => {
               this.publishPictures("Came around");
               this.publishPictures(data);
-          });
+          }, err => this.publishPictures(err));
         }
          /* this.file.resolveLocalFilesystemUrl(path)
             .then(entry => {

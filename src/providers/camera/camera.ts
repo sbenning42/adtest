@@ -169,18 +169,18 @@ export class CameraProvider {
     
   }
 
-  readFile(file: any) {
+ /* readFile(file: any) {
     this.publishPictures("Came here");
     const reader = new FileReader();
     reader.onloadend = () => {
       this.publishPictures("Came there");
       /*let base64 = btoa(new Uint8Array(reader.result)
-        .reduce((data, byte) => data + String.fromCharCode(byte), ''));*/
+        .reduce((data, byte) => data + String.fromCharCode(byte), ''));
       //this.publishPictures(reader.result);
       //this.publishPictures(_arrayBufferToBase64(reader.result));
     };
     this.file.readAsDataURL();
-  }
+  }*/
   
   getDataUri(url, callback) {
     var image = new Image();

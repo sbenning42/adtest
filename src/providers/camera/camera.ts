@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { normalizeURL } from 'ionic-angular/util/util';
 import { ImagePicker } from '@ionic-native/image-picker';
 
+import { File, FileEntry } from '@ionic-native/file';
+
 /*
   Generated class for the CameraProvider provider.
 
@@ -47,7 +49,7 @@ export class CameraProvider {
   private _errors$: BehaviorSubject<string[]> = new BehaviorSubject(this.errors);
   errors$: Observable<string[]> = this._errors$.asObservable();
 
-  constructor(private camera: Camera, private imagePicker: ImagePicker) {
+  constructor(private camera: Camera, private imagePicker: ImagePicker, private file: File) {
     console.log('Hello CameraProvider Provider');
   }
 
@@ -149,9 +151,20 @@ export class CameraProvider {
       for (var i = 0; i < results.length; i++) {
         console.log('Image URI: ' + results[i]);
         this.publishPictures(results[i]);
-        getFileContentAsBase64(results[i], content => this.publishPictures(content));
+        this.file.resolveLocalFilesystemUrl(results[i])
+          .then(entry => (<FileEntry>entry).file(file => this.readFile(file)))
+          .catch(err => console.log(err));
       }
     }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+  }
+
+  readFile(file: any) {
+    const reader = new FileReader();
+    const callback = (content) => this.publishPictures(content);
+    reader.onloadend = function () {
+      callback(this.result);
+    };
+    reader.readAsDataURL(file);
   }
   
   getDataUri(url, callback) {

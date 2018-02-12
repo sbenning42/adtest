@@ -115,6 +115,7 @@ export class AddPage {
     public viewCtrl: ViewController,
     public navParams: NavParams,
     public camera: CameraProvider,
+    public cam: Camera,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
     public loading: LoadingController,

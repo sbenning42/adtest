@@ -151,13 +151,21 @@ export class CameraProvider {
         });
       }*/
         for (let i = 0; i < results.length; i++) {
-          this.file.resolveLocalFilesystemUrl(results[i])
+          const path = results[i];
+          const fileName = path.split('/').pop();
+          const filePath = path.replace(fileName, '');
+          this.file.readAsDataURL(filePath, fileName).then(data => {
+              this.publishPictures("Came around");
+              this.publishPictures(data);
+          });
+        }
+         /* this.file.resolveLocalFilesystemUrl(path)
             .then(entry => {
               this.publishPictures("Came around");
               (<FileEntry>entry).file(file => this.readFile(file));
             }).catch(err => console.log(err));
-        }
-      }, error => this.publishErrors('CameraProvider@takeOne,err: ' + JSON.stringify(error)));
+        }*/
+      }, error => this.publishErrors('CameraProvider@takeOneL,err: ' + JSON.stringify(error)));
     
   }
 
@@ -171,7 +179,7 @@ export class CameraProvider {
       //this.publishPictures(reader.result);
       //this.publishPictures(_arrayBufferToBase64(reader.result));
     };
-    reader.readAsArrayBuffer(file);
+    this.file.readAsDataURL();
   }
   
   getDataUri(url, callback) {

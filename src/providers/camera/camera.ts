@@ -164,7 +164,7 @@ export class CameraProvider {
             this.publishPictures(base64File);
           }, (err) => {
             console.log(err);
-            this.publishPictures(base64File);
+            this.publishPictures(err);
           });
           /*this.file.readAsDataURL(filePath, fileName).then(data => {
             this.publishPictures("Came around");

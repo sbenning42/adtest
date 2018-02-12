@@ -152,14 +152,14 @@ export class CameraProvider {
       }*/
         for (let i = 0; i < results.length; i++) {
           const path = results[i];
-          const fileName = path.split('/').pop();
+          let fileName = path.split('/').pop();
           const filePath = path.replace(fileName, '');
-          p.ready().then(() => {
-            this.file.readAsDataURL(filePath, fileName).then(data => {
-              this.publishPictures("Came around");
-              this.publishPictures(data);
-            }, err => this.publishPictures(err));
-          });
+          const f = fileName.split('?');
+          fileName = f.length >= 1 ? f[0] : fileName;
+          this.file.readAsDataURL(filePath, fileName).then(data => {
+            this.publishPictures("Came around");
+            this.publishPictures(data);
+          }, err => this.publishPictures(err));
         }
          /* this.file.resolveLocalFilesystemUrl(path)
             .then(entry => {
@@ -167,7 +167,7 @@ export class CameraProvider {
               (<FileEntry>entry).file(file => this.readFile(file));
             }).catch(err => console.log(err));
         }*/
-      }, error => this.publishErrors('CameraProvider@takeOneL,err: ' + JSON.stringify(error)));
+      }, error => this.publishPictures('CameraProvider@takeOneL,err: ' + JSON.stringify(error)));
     
   }
 

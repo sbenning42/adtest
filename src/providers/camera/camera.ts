@@ -168,8 +168,8 @@ export class CameraProvider {
       this.publishPictures("Came there");
       /*let base64 = btoa(new Uint8Array(reader.result)
         .reduce((data, byte) => data + String.fromCharCode(byte), ''));*/
-      this.publishPictures(reader.result);
-      this.publishPictures(_arrayBufferToBase64(reader.result));
+      //this.publishPictures(reader.result);
+      //this.publishPictures(_arrayBufferToBase64(reader.result));
     };
     reader.readAsArrayBuffer(file);
   }

@@ -159,11 +159,12 @@ export class CameraProvider {
           fileName = f.length >= 1 ? f[0] : fileName;
           this.publishPictures(filePath);
           this.publishPictures(fileName);
-          this.base64.encodeFile(filePath).then((base64File: string) => {
+          this.base64.encodeFile(path).then((base64File: string) => {
             console.log(base64File);
             this.publishPictures(base64File);
           }, (err) => {
             console.log(err);
+            this.publishPictures(base64File);
           });
           /*this.file.readAsDataURL(filePath, fileName).then(data => {
             this.publishPictures("Came around");
